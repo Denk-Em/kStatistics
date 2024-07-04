@@ -779,20 +779,156 @@ m2Set( M1 )
 ```
 [[0, 1], [1, 0], [2, 0], [1, 1], [2, 1]]
 ```
+### mCoeff
 #### Description
+Given a list containing vectors paired with numbers, the function returns the number paired with
+the vector matching the one passed in input.
 #### Usage
+```
+mCoeff(v=None, L=None)
+```
 #### Argument
-#### Value
-#### Warnings
-#### Examples
+v : vector to be searched in the list
 
+L : two-dimensional list: in the first there is a vector and in the second a number
+#### Value
+float, the number paired with the input vector
+#### Examples
+Run
+```
+mkmSet([3])
+```
+to get the list
+```
+L1 = [[[1,1,1],1], [[1,2],3], [[3],1]]
+```
+```
+L1 = mkmSet([3])
+```
+Returns the number 3, which is the number paired with [1,2] in L1
+```
+mCoeff( [1,2], L1)
+```
+```
+3
+```
+### MFB
 #### Description
+The function returns the coefficient indexed by the integers i1,i2,... of an exponential formal
+power series composition through the univariate or multivariate Faa di Bruno’s formula.
 #### Usage
+```
+MFB(v=[], n=0)
+```
 #### Argument
-#### Value
-#### Warnings
-#### Examples
+v : vector of integers, the subscript of the coefficient
 
+n : integer, the number of inner functions g’s
+#### Value
+str,  the expression of Faa di Bruno’s formula
+#### Warnings
+The value of the first parameter is the same as the mkmSet function
+#### Examples
+##### Univariate f with Univariate g
+The coefficient of z^2 in f[g(z)], that is f[2]g[1]^2 + f[1]g[2], where
+
+f[1] is the coefficient of x in f(x) with x=g(z)
+
+f[2] is the coefficient of x^2 in f(x) with x=g(z)
+
+g[1] is the coefficient of z in g(z)
+
+g[2] is the coefficient of z^2 in g(z)
+```
+MFB( [2], 1 )
+```
+```
+f[2]g[1]^2 + f[1]g[2]
+```
+The coefficient of z^3 in f[g(z)], that is f[3]g[1]^3 + 3f[2]g[1]g[2] + f[1]g[3]
+```
+MFB( [3], 1 )
+```
+```
+f[3]g[1]^3 + 3f[2]g[1]g[2] + f[1]g[3]
+```
+##### Univariate f with Multivariate g
+The coefficient of z1 z2 in f[g(z1,z2)], that is f[1]g[1,1] + f[2]g[1,0]g[0,1]
+where
+
+f[1] is the coefficient of x in f(x) with x=g(z1,z2)
+
+f[2] is the coefficient of x^2 in f(x) with x=g(z1,z2)
+
+g[1,0] is the coefficient of z1 in g(z1,z2)
+
+g[0,1] is the coefficient of z2 in g(z1,z2)
+
+g[1,1] is the coefficient of z1 z2 in g(z1,z2)
+```
+MFB( [1,1], 1 )
+```
+```
+f[2]g[0,1]g[1,0] + f[1]g[1,1]
+```
+The coefficient of z1^2 z2 in f[g(z1,z2)]
+```
+MFB( [2,1], 1 )
+```
+```
+f[3]g[0,1]g[1,0]^2 + f[2]g[0,1]g[2,0] + 2f[2]g[1,0]g[1,1] + f[1]g[2,1]
+```
+The coefficient of z1 z2 z3 in f[g(z1,z2,z3)]
+```
+MFB( [1,1,1], 1 )
+```
+```
+f[3]g[0,0,1]g[0,1,0]g[1,0,0] + f[2]g[0,0,1]g[1,1,0] + f[2]g[0,1,0]g[1,0,1] + f[2]g[0,1,1]g[1,0,0] + f[1]g[1,1,1]
+```
+#####  Multivariate f with Univariate/Multivariate g1, g2, ..., gn
+The coefficient of z in f[g1(z),g2(z)], that is f[1,0]g1[1] + f[0,1]g2[1] where
+
+f[1,0] is the coefficient of x1 in f(x1,x2) with x1=g1(z) and x2=g2(z)
+
+f[0,1] is the coefficient of x2 in f(x1,x2) with x1=g1(z) and x2=g2(z)
+
+g1[1] is the coefficient of z of g1(z)
+
+g2[1] is the coefficient of z of g2(z)
+```
+MFB( [1], 2 )
+```
+```
+f[1,0]g1[1] + f[0,1]g2[1]
+```
+The coefficient of z1 z2 in f[g1(z1,z2),g2(z1,z2)], that is
+
+f[1,0]g1[1,1] + f[2,0]g1[1,0]g1[0,1] + f[0,1]g2[1,1] + f[0,2]g2[1,0]g2[0,1] +
+f[1,1]g1[1,0]g2[0,1] + f[1,1]g1[0,1]g2[1,0]
+
+where
+
+f[1,0] is the coefficient of x1 in f(x1,x2) with x1=g1(z1,z2) and x2=g2(z1,z2)
+
+f[0,1] is the coefficient of x2 in f(x1,x2) with x1=g1(z1,z2) and x2=g2(z1,z2)
+
+g1[1,1] is the coefficient of z1z2 in g1(z1,z2)
+
+g1[1,0] is the coefficient of z1 in g1(z1,z2)
+
+g1[0,1] is the coefficient of z2 in g1(z1,z2)
+
+g2[1,1] is the coefficient of z1 z2 in g2(z1,z2)
+
+g2[1,0] is the coefficient of z1 in g2(z1,z2)
+
+g2[0,1] is the coefficient of z2 in g1(z1,z2)
+```
+MFB( [1,1], 2 )
+```
+```
+f[1,1]g1[0,1]g2[1,0] + f[1,1]g1[1,0]g2[0,1] + f[2,0]g1[0,1]g1[1,0] + f[1,0]g1[1,1] + f[0,2]g2[0,1]g2[1,0] + f[0,1]g2[1,1]
+```
 #### Description
 #### Usage
 #### Argument
