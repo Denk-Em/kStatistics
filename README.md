@@ -3,6 +3,15 @@
 
 ### Unbiased Estimators for Cumulant Products and Faa Di Bruno's Formula
 
+### Introduction
+This package is a Python implementation of the original R package [kStatistics](https://cran.r-project.org/web/packages/kStatistics/index.html), written by professors Di Nardo and Guardino. Further explanations of the algorithms presented in this file are available [here](https://cran.r-project.org/web/packages/kStatistics/kStatistics.pdf).
+
+#### Contacts
+elvira.dinardo@unito.it
+
+giuseppe.guardino@rete.basilicata.it
+
+hugo.mai@ensta-paris.fr
 ### Description
 
 kStatistics is a package producing estimates of (joint) cumulants and (joint) cumulant products
@@ -12,7 +21,7 @@ are given useful in the construction of these estimations such as integer partit
 multiset subdivisions or multi-index partitions, pairing and merging of multisets. In the package,
 there are also functions to recover univariate and multivariate cumulants from a sequence of univariate and multivariate moments (and vice-versa), using Faa di Bruno’s formula. The function
 producing Faa di Bruno’s formula returns coefficients of exponential power series compositions
-such as $f[g(z)]$ with $f$ and $g$ both univariate, or $f[g(z1,...,zm)]$ with $f$ univariate and $g$ multivariate, or $f[g1(z1,...,zm),...,gn(z1,...,zm)]$ with $f$ and $g$ both multivariate. Let us recall
+such as $f[g(z)]$ with $f$ and $g$ both univariate, or $f[g(z_1,...,z_m)]$ with $f$ univariate and $g$ multivariate, or $f[g1(z_1,...,z_m),...,gn(z_1,...,z_m)]$ with $f$ and $g$ both multivariate. Let us recall
 that Faa di Bruno’s formula might also be employed to recover iterated (partial) derivatives of all
 these compositions. Lastly, using Faa di Bruno’s formula, some special families of polynomials are
 also generated, such as Bell polynomials, generalized complete Bell polynomials, partition polynomials and generalized partition polynomials. Applications of these polynomials are described in
@@ -32,9 +41,10 @@ corresponds to a subdivision of a multiset having the input multi-index as multi
 countP( v=[1] )
 ```
 #### Argument
-A list 
+v : list 
 #### Value
-An integer
+int, the multiplicity of the given item
+
 #### Examples
 ```
 countP([2,1])
@@ -64,9 +74,9 @@ The function computes a simple or a multivariate cumulant in terms of simple or 
 cum2mom(n = 1)
 ```
 #### Argument
-n integer or vector of integers.
+n : integer or vector of integers.
 #### Value
-String
+str, the expression of the cumulant in terms of moments
 #### Examples
 ```
 cum2mom(5)
@@ -90,11 +100,11 @@ The function generates a complete or a partial exponential Bell polynomial.
 eBellPol(n = 1, m = 0)
 ```
 #### Argument
-n integer, the degree of the polynomial
+n : integer, the degree of the polynomial
 
-m integer, the fixed degree of each monomial in the polynomial
+m : integer, the fixed degree of each monomial in the polynomial
 #### Value
-String, the expression of the exponential Bell polynomial
+str, the expression of the exponential Bell polynomial
 #### Examples
 ```
 eBellPol(5)
@@ -119,11 +129,11 @@ function) when its variables are substituted with numerical values
 e_eBellPol(n=1, m=0, v=None)
 ```
 #### Argument
-n integer, the degree of the polynomial
+n : integer, the degree of the polynomial
 
-m integer, the fixed degree of each monomial in the polynomial
+m : integer, the fixed degree of each monomial in the polynomial
 
-v vector, the numerical values in place of the variables of the polynomial
+v : vector, the numerical values in place of the variables of the polynomial
 
 #### Value
 int, the value assumed by the polynomial.
@@ -177,17 +187,17 @@ when its variables and/or its coefficients are substituted with numerical values
 e_GCBellPol(pv=[], pn=0, pyc=[], pc=[], b=False)
 ```
 #### Argument
-pv vector of integers, the subscript of the polynomial
+pv : vector of integers, the subscript of the polynomial
 
-pn integer, the number of variables
+pn : integer, the number of variables
 
-pyc vector, the numerical values into the variables [optional], or the string with the
+pyc : vector, the numerical values into the variables [optional], or the string with the
 
 direct assignment into the variables and/or the coefficients
 
-pc vector, the numerical values into the coefficients, [optional if pyc is a string]
+pc : vector, the numerical values into the coefficients, [optional if pyc is a string]
 
-b boolean, if TRUE the function prints the list of all the assignments
+b : boolean, if TRUE the function prints the list of all the assignments
 #### Value
 string or numerical, the evaluation of the polynomial
 #### Warnings
@@ -310,8 +320,7 @@ e_GCBellPol( [2,1], 1, [7], np.arange(1,6) )
 ```
 y=7, g[0,1]=1, g[1,0]=2, g[1,1]=3, g[2,0]=4, g[2,1]=5
 ```
-#####
-Evaluation of the generalized complete Bell Polynomial with subscript (1,1)
+##### Evaluation of the generalized complete Bell Polynomial with subscript (1,1)
 The polynomial (y1)g1[1,1] + (y1^2)g1[1,0]g1[0,1] + (y2)g2[1,1] + (y2^2)g2[1,0]
 g2[0,1] + (y1)(y2)g1[1,0]g2[0,1] + (y1)(y2)g1[0,1]g2[1,0], output of 
 ```
@@ -427,18 +436,18 @@ substituted with numerical values.
 e_MFB(pv=[], pn=0, pf=[], pg=[], b=False)
 ```
 #### Argument
-pv vector of integers, the subscript of Faa di Bruno’s formula
+pv : vector of integers, the subscript of Faa di Bruno’s formula
 
-pn integer, the number of the inner formal power series "g"
+pn : integer, the number of the inner formal power series "g"
 
-pf vector, the numerical values in place of the coefficients of the outer formal power
+pf : vector, the numerical values in place of the coefficients of the outer formal power
 series "f" or the string with the direct assignments in place of the coefficients
 of both "f" and "g"
 
-pg vector, the numerical values in place of the coefficients of the inner formal power
+pg : vector, the numerical values in place of the coefficients of the inner formal power
 series "g" [Optional if pf is a string]
 
-b boolean
+b : boolean
 
 #### Value
 numerical, the evaluation of Faa di Bruno’s formula
@@ -535,9 +544,9 @@ positive integer k less or equal to n.
 ff( n=1, k )
 ```
 #### Argument
-n integer
+n : integer
 
-k integer
+k : integer
 #### Value
 int, the descending factorial
 #### Examples
@@ -560,12 +569,12 @@ where y[1],...,y[n] are variables. The input vector of integers identifies the s
 GCBellPol(nv=[], m=1, b=False)
 ```
 #### Argument
-nv vector of integers, the subscript of the polynomial, corresponding to the powers
+nv : vector of integers, the subscript of the polynomial, corresponding to the powers
 of the product among z1, z2, ..., zm
 
-m integer, the number of z’s variables
+m : integer, the number of z’s variables
 
-b boolean, TRUE if the inner formal power series "g" are all equal
+b : boolean, TRUE if the inner formal power series "g" are all equal
 #### Value
 str, the expression of the polynomial
 #### Warnings
@@ -612,7 +621,7 @@ The function returns a general partition polynomial.
 gpPart(n = 0)
 ```
 #### Argument
-n integer
+n : integer
 #### Value
 str, the expression of the polynomial 
 #### Warnings
