@@ -1214,6 +1214,267 @@ mpCart(A,B)
 ```
 [[[[1, 0], [1, 0], [1, 0]], -1], [[[2, 0], [1, 0]], 1]]
 ```
+### nKM
+#### Description
+Given a multivariate data sample, the function returns an estimate of a joint (or multivariate) cumulant with a fixed order
+#### Usage
+```
+nKM(v=None, V=None)
+```
+#### Argument
+v : vector of integers
+
+V : vector of a multivariate data sample
+#### Value
+float, the value of the multivariate k-statistics
+#### Warnings
+The size of each data vector must be equal to the length of the vector passed trough the first input
+variable.
+#### Examples
+###### Data assignment
+```
+data1 = [
+    [5.31, 11.16], [3.26, 3.26], [2.35, 2.35], [8.32, 14.34], [13.48, 49.45],
+    [6.25, 15.05], [7.01, 7.01], [8.52, 8.52], [0.45, 0.45], [12.08, 12.08], [19.39, 10.42]
+]
+```
+Returns an estimate of the joint cumulant k[2,1]
+```
+nKM([2,1], data1)
+```
+```
+-23.737902999999278
+```
+###### Data assignment
+```
+data2 = [
+    [5.31, 11.16, 4.23], [3.26, 3.26, 4.10], [2.35, 2.35, 2.27],
+    [4.31, 10.16, 6.45], [3.1, 2.3, 3.2], [3.20, 2.31, 7.3]
+]
+```
+Returns an estimate of the joint cumulant k[2,2,2]
+```
+nKM([2,2,2], data2)
+```
+```
+678.1045339247212
+```
+###### Data assignment
+```
+data3 = [
+    [5.31, 11.16, 4.23, 4.22], [3.26, 3.26, 4.10, 4.9], [2.35, 2.35, 2.27, 2.26],
+    [4.31, 10.16, 6.45, 6.44], [3.1, 2.3, 3.2, 3.1], [3.20, 2.31, 7.3, 7.2]
+]
+```
+Returns an estimate of the joint cumulant k[2,1,1,1]
+```
+nKM([2,1,1,1], data3)
+```
+```
+32.053913213909254
+```
+### nKS
+#### Description
+Given a data sample, the function returns an estimate of a cumulant with a fixed order.
+#### Usage
+```
+nKS(v=None, V=None)
+```
+#### Argument
+v : integer or one-dimensional vector
+
+V : vector of a data sample
+
+#### Value
+float, the value of the k-statistics
+#### Examples
+```
+data = [
+    16.34, 10.76, 11.84, 13.55, 15.85, 18.20, 7.51, 10.22, 12.52, 14.68, 16.08,
+    19.43, 8.12, 11.20, 12.95, 14.77, 16.83, 19.80, 8.55, 11.58, 12.10, 15.02,
+    16.83, 16.98, 19.92, 9.47, 11.68, 13.41, 15.35, 19.11
+]
+```
+```
+nKS(7, data)
+```
+Returns an estimate of the cumulant of order 7
+```
+```
+1322.8183753490448
+```
+nKS(1, data)
+```
+Returns an estimate of the cumulant of order 1, that is the mean
+```
+```
+14.021666666666672
+```
+nKS(2, data)
+```
+Returns an estimate of the cumulant of order 2, that is the variance
+```
+12.650069540229737
+```
+```
+nKS(3, data) / (nKS(2, data) ** 0.5) ** 3
+```
+Returns an estimate of the skewness
+```
+-0.03216229420531556
+```
+```
+nKS(4, data) / nKS(2, data) ** 2 + 3
+```
+Returns an estimate of the kurtosis
+```
+2.114707796531899
+```
+### nPerm
+#### Description
+The function returns all possible different permutations of objects in a list or in a vector
+#### Usage
+```
+nPerm(L=[])
+```
+#### Argument
+L : list
+#### Value
+list, all the permutations of L
+#### Examples
+permutations of 1,2,3
+```
+nPerm( [1,2,3] )
+```
+```
+[[3, 1, 2], [1, 3, 2], [1, 2, 3], [3, 2, 1], [2, 3, 1], [2, 1, 3]]
+```
+permutations of 1,2,1 (two elements are equal)
+```
+nPerm( [1,2,1] )
+```
+```
+[[1, 1, 2], [1, 2, 1], [2, 1, 1]]
+```
+permutations of the words "Alice", "Bob","Jack"
+```
+nPerm( ["Alice", "Bob","Jack"] )
+```
+```
+[['Jack', 'Alice', 'Bob'], ['Alice', 'Jack', 'Bob'], ['Alice', 'Bob', 'Jack'], ['Jack', 'Bob', 'Alice'], ['Bob', 'Jack', 'Alice'], ['Bob', 'Alice', 'Jack']]
+```
+permutations of the vectors [0,1], [2,3], [7,3]
+```
+nPerm( [[0,1], [2,3], [7,3]] )
+```
+```
+[[[7, 3], [0, 1], [2, 3]], [[0, 1], [7, 3], [2, 3]], [[0, 1], [2, 3], [7, 3]], [[7, 3], [2, 3], [0, 1]], [[2, 3], [7, 3], [0, 1]], [[2, 3], [0, 1], [7, 3]]]
+```
+### nPM
+#### Description
+Given a multivariate data sample, the function returns an estimate of a product of joint cumulants
+with fixed orders.
+
+#### Usage
+```
+nPM(v=None, V=None)
+```
+#### Argument
+v : list of integer vectors
+
+V : vector of a multivariate data sample
+
+#### Value
+float, the estimate of the multivariate polykay
+#### Examples
+Data asignment
+```
+data1 = [
+    [5.31, 11.16], [3.26, 3.26], [2.35, 2.35], [8.32, 14.34], [13.48, 49.45],
+    [6.25, 15.05], [7.01, 7.01], [8.52, 8.52], [0.45, 0.45], [12.08, 12.08], [19.39, 10.42]
+]
+```
+Returns an estimate of the product k[2,1]*k[1,0], where k[2,1] and k[1,0] are the
+cross-correlation of order (2,1) and the marginal mean of the population distribution
+respectively
+```
+nPM([[2, 1], [1, 0]], data1)
+```
+```
+48.43242806555327
+```
+Data asignment
+```
+data2 = [
+    [5.31, 11.16, 4.23], [3.26, 3.26, 4.10], [2.35, 2.35, 2.27],
+    [4.31, 10.16, 6.45], [3.1, 2.3, 3.2], [3.20, 2.31, 7.3]
+]
+```
+Returns an estimate of the product k[2,0,1]*k[1,1,0], where k[2,0,1] and k[1,1,0]
+are joint cumulants of the population distribution
+```
+nPM([[2, 0, 1], [1, 1, 0]], data2)
+```
+```
+-0.9858162208170143
+```
+### nPolyk 
+#### Description
+The master function executes one of the functions to compute simple k-statistics (nKS), multivariate
+k-statistics (nKM), simple polykays (nPS) or multivariate polykays (nPM).
+#### Usage
+```
+nPolyk(L=None, data=None, bhelp=None)
+```
+#### Argument
+L : vector of orders
+
+data : vector of a (univariate or multivariate) sample data
+
+bhelp : boolean
+
+#### Value
+float, the estimate of the (joint) cumulant or of the (joint) cumulant product
+#### Examples
+Data assignment
+```
+data1 = [
+    16.34, 10.76, 11.84, 13.55, 15.85, 18.20, 7.51, 10.22, 12.52, 14.68, 16.08,
+    19.43, 8.12, 11.20, 12.95, 14.77, 16.83, 19.80, 8.55, 11.58, 12.10, 15.02,
+    16.83, 16.98, 19.92, 9.47, 11.68, 13.41, 15.35, 19.11
+]
+```
+Display "KS: -1.44706" which indicates the type of subfunction (nKS) called by
+the master function nPolyk and gives the estimate of the third cumulant
+```
+nPolyk([3], data1, True)
+```
+Display " -1.44706" (without the indication of the employed subfunction)
+```
+print(nPolyk([3], data1, False))
+```
+Display "PS: 177.4233" which indicates the type of subfunction (nPS) called by
+the master function nPolyk and gives the estimate of the product between the
+variance k[2] and the mean k[1]
+```
+print(nPolyk([[2], [1]], data1, True))
+```
+Data assignment
+data2 = [
+    [5.31, 11.16], [3.26, 3.26], [2.35, 2.35], [8.32, 14.34], [13.48, 49.45],
+    [6.25, 15.05], [7.01, 7.01], [8.52, 8.52], [0.45, 0.45], [12.08, 12.08], [19.39, 10.42]
+]
+
+Display "KM: -23.7379" which indicates the type of subfunction (nKM) called by
+the master function nPolyk and gives the estimate of k[2,1]
+```
+print(nPolyk([2, 1], data2, True))
+```
+Display "PM: 48.43243" which indicates the type of subfunction (nPM) called by
+the master function nPolyk and gives the estimate of k[2,1]*k[1,0]
+```
+print(nPolyk([[2, 1], [1, 0]], data2, True))
+```
 #### Description
 #### Usage
 #### Argument
