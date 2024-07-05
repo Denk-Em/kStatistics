@@ -961,7 +961,265 @@ The coefficient of z1 z2 z3 in f[g1(z1,z2,z3),g2(z1,z2,z3),g3(z1,z2,z3)]
 ```
 MFB( [1,1,1], 3 )
 ```
+### MFB2Set
+#### Description
+Secondary function useful for manipulating the result of the MFB function.
+#### Usage
+```
+MFB2Set(sExpr="")
+```
+#### Argument
+sExpr : the output of the MFB function
+#### Value
+set, a set
+#### Examples
+# Run 
+```
+MFB([3], 1)
+```
+to generate f[3]g[1]^3 + 3f[2]g[1]g[2] + f[1]g[3]
+Convert the output of the MFB(c(3),1) into a vector using
+```
+import numpy as np
 
+np.array(MFB2Set(MFB([3], 1)))
+```
+The result is the following:
+```
+[['1' '1' 'f' '3' '1']
+ ['1' '1' 'g' '1' '3']
+ ['2' '3' 'f' '2' '1']
+ ['2' '1' 'g' '1' '1']
+ ['2' '1' 'g' '2' '1']
+ ['3' '1' 'f' '1' '1']
+ ['3' '1' 'g' '3' '1']]
+```
+### mkmSet
+#### Description
+The function returns all the partitions of a multi-index, that is a vector of non-negative integers.
+Note that these partitions correspond to the subdivisions of a multiset having the input multi-index
+as multiplicities.
+#### Usage
+```
+mkmSet(vPar=None, vOutput=False)
+```
+#### Argument
+vPar : vector of non-negative integers
+
+vOutput : optional boolean variable. If equal to TRUE, the function produces a compact
+output that is easy to read.
+#### Value
+list, two-dimensional list: in the first there is the partition, while in the second there
+is its multiplicity
+#### Examples
+Returns [ [[1,1,1],1], [[1,2],3], [[3],1] ]
+
+3 is the multiplicity of a multiset with 3 elements all equal
+```
+mkmSet([3])
+```
+```
+[[[1, 1, 1], 1], [[1, 2], 3], [[3], 1]]
+```
+Returns [[[[0, 1], [1, 0], [1, 0]], 1], [[[0, 1], [2, 0]], 1], [[[1, 0], [1, 1]], 2], [[[2, 1]], 1]]
+
+(2,1) is the multiplicity of a multiset with 2 equal elements and a third distinct element
+```
+mkmSet([2,1])
+```
+```
+[[[[0, 1], [1, 0], [1, 0]], 1], [[[0, 1], [2, 0]], 1], [[[1, 0], [1, 1]], 2], [[[2, 1]], 1]]
+```
+Or (same output)
+```
+mkmSet([2,1], False)
+```
+```
+[[[[0, 1], [1, 0], [1, 0]], 1], [[[0, 1], [2, 0]], 1], [[[1, 0], [1, 1]], 2], [[[2, 1]], 1]]
+```
+Returns the same output of the previous example but in a compact form.
+```
+mkmSet([2,1], True)
+```
+```
+[(0 1) (1 0) (1 0), 1 ]
+[(0 1) (2 0), 1 ]
+[(1 0) (1 1), 2 ]
+[(2 1), 1 ]
+
+
+None
+```
+### mkT
+#### Description
+Given a multi-index, that is a vector of non-negative integers and a positive integer n, the function
+returns all the lists $(v_1,...,v_n)$ of non-negative integer vectors, with the same lenght of the multiindex and such that $v=v_1+...+v_n$.
+
+#### Usage
+```
+mkT(v=[], n=0, vOutput=False)
+```
+#### Argument
+v : vector of integers
+
+n : integer, number of addends
+
+vOutput : optional boolean variable. If equal to TRUE, the function produces a compact
+output that is easy to read.
+
+#### Value
+list, the list of n vectors $(v_1,...,v_n)$
+#### Warnings
+The vector in the first variable must be not empty and must contain all non-negative integers. The
+second parameter must be a positive integer
+#### Examples
+Returns the scompositions of the vector (1,1) in 2 vectors of 2 non-negative integers
+such that their sum is (1,1), that is
+
+([1,1],[0,0]) - ([0,0],[1,1]) - ([1,0],[0,1]) - ([0,1],[1,0])
+```
+mkT([1,1], 2)
+```
+```
+[[[0, 1], [1, 0]], [[1, 0], [0, 1]], [[1, 1], [0, 0]], [[0, 0], [1, 1]]]
+```
+Or (same output)
+```
+mkT(|1,1], 2, False)
+```
+```
+[[[0, 1], [1, 0]], [[1, 0], [0, 1]], [[1, 1], [0, 0]], [[0, 0], [1, 1]]]
+```
+Returns the scompositions of the vector (1,0,1) in 2 vectors of 3 non-negative integers
+such that their sum gives (1,0,1), that is
+
+([1,0,1],[0,0,0]) - ([0,0,0],[1,0,1]) - ([1,0,0],[0,0,1]) - ([0,0,1],[1,0,0]).
+
+Note that the second value in each resulting vector is always zero.
+```
+mkT([1,0,1], 2)
+```
+```
+[[[0, 0, 1], [1, 0, 0]], [[1, 0, 0], [0, 0, 1]], [[1, 0, 1], [0, 0, 0]], [[0, 0, 0], [1, 0, 1]]]
+```
+Or (same output)
+```
+mkT([1,0,1], 2, False)
+```
+```
+[[[0, 0, 1], [1, 0, 0]], [[1, 0, 0], [0, 0, 1]], [[1, 0, 1], [0, 0, 0]], [[0, 0, 0], [1, 0, 1]]]
+```
+Returns the same output of the previous example but in a compact form.
+```
+mkT([1,0,1], 2, True)
+```
+```
+[( 0 0 1 )( 1 0 0 )]
+[( 1 0 0 )( 0 0 1 )]
+[( 1 0 1 )( 0 0 0 )]
+[( 0 0 0 )( 1 0 1 )]
+None
+```
+Returns the scompositions of the vector (1,1,1) in 3 vectors of 3 non-negative integers
+such that their sum gives (1,1,1). The result is given in a compact form.
+```
+for m in mkT([1, 1, 1], 3):
+    for n in m:
+        print(n, end=" - ")
+    print()
+```
+### mom2cum
+#### Description
+The function compute a simple or a multivariate moment in terms of simple or multivariate cumulants.
+#### Usage
+```
+mom2cum(n=1)
+```
+#### Argument
+n : integer or vector of integers
+#### Value
+str : the expression of the moment in terms of cumulants
+#### Warnings
+The value of the first parameter is the same as the MFB function in the univariate with univariate case
+composition and in the univariate with multivariate case composition.
+#### Examples
+Returns the simple moment m[5] in terms of the simple cumulants k[1],...,k[5].
+```
+mom2cum(5)
+```
+```
+k[1]^5 + 10k[1]^3k[2] + 15k[1]k[2]^2 + 10k[1]^2k[3] + 10k[2]k[3] + 5k[1]k[4] + k[5]
+```
+Returns the multivariate moment m[3,1] in terms of the multivariate cumulants k[i,j] for
+i=0,1,2,3 and j=0,1.
+```
+mom2cum([3,1])
+```
+```
+k[0,1]k[1,0]^3 + 3k[0,1]k[1,0]k[2,0] + k[0,1]k[3,0] + 3k[1,0]^2k[1,1] + 3k[1,0]k[2,1] + 3k[1,1]k[2,0] + k[3,1]
+```
+### mpCart 
+#### Description
+Given two lists with elements of the same type, the function returns a new list whose elements are
+the joining of the two original lists, except for the last elements, which are multiplied.
+#### Usage
+```
+mpCart(m1=None, m2=None)
+```
+#### Argument
+M1 : list of vectors
+
+M2 : list of vectors
+
+#### Value
+list, the list with the joined input lists
+#### Examples
+```
+A = [[[ [1], [2] ], -1],[[ [3] ], 1]]
+```
+where
+
+-1 is the multiplicative factor of [[1],[2]]
+
+1 is the multiplicative factor of [[3]]
+```
+B = [[[ [5] ], 7]]
+```
+where 7 is the multiplicative factor of [[5]]
+
+Return [[[1],[2],[5]], -7] , [[[3],[5]], 7]
+```
+mpCart(A,B)
+```
+```
+[[[[1], [2], [5]], -7], [[[3], [5]], 7]]
+```
+```
+A = [[[ [1, 0], [1, 0] ], -1], [[ [2, 0] ], 1]]
+```
+where
+
+- 1 is the multiplicative factor of [[1,0],[1,0]]
+  
+1 is the multiplicative factor of [[2,0]]
+```
+B = [[[ [1, 0] ], 1]]
+```
+where 1 is the multiplicative factor of [[1,0]]
+
+Return [[[1,0],[1,0],[1,0]], -1], [[[2,0],[1,0]],1]
+```
+mpCart(A,B)
+```
+```
+[[[[1, 0], [1, 0], [1, 0]], -1], [[[2, 0], [1, 0]], 1]]
+```
+#### Description
+#### Usage
+#### Argument
+#### Value
+#### Warnings
+#### Examples
 #### Description
 #### Usage
 #### Argument
