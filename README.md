@@ -1444,52 +1444,303 @@ data1 = [
     16.83, 16.98, 19.92, 9.47, 11.68, 13.41, 15.35, 19.11
 ]
 ```
-Display "KS: -1.44706" which indicates the type of subfunction (nKS) called by
+Displays "KS: -1.4470595032807978" which indicates the type of subfunction (nKS) called by
 the master function nPolyk and gives the estimate of the third cumulant
 ```
 nPolyk([3], data1, True)
 ```
-Display " -1.44706" (without the indication of the employed subfunction)
 ```
-print(nPolyk([3], data1, False))
+KS:
+-1.4470595032807978
 ```
-Display "PS: 177.4233" which indicates the type of subfunction (nPS) called by
+Displays " -1.4470595032807978" (without the indication of the employed subfunction)
+```
+nPolyk([3], data1, False)
+```
+```
+-1.4470595032807978
+```
+Displays "PS: 177.42329372003013" which indicates the type of subfunction (nPS) called by
 the master function nPolyk and gives the estimate of the product between the
 variance k[2] and the mean k[1]
 ```
-print(nPolyk([[2], [1]], data1, True))
+nPolyk([[2], [1]], data1, True)
 ```
+```PS:
+177.42329372003013
+```
+
 Data assignment
+```
 data2 = [
     [5.31, 11.16], [3.26, 3.26], [2.35, 2.35], [8.32, 14.34], [13.48, 49.45],
     [6.25, 15.05], [7.01, 7.01], [8.52, 8.52], [0.45, 0.45], [12.08, 12.08], [19.39, 10.42]
 ]
-
-Display "KM: -23.7379" which indicates the type of subfunction (nKM) called by
+```
+Displays "KM: -23.737902999999278" which indicates the type of subfunction (nKM) called by
 the master function nPolyk and gives the estimate of k[2,1]
 ```
-print(nPolyk([2, 1], data2, True))
+nPolyk([2, 1], data2, True)
 ```
-Display "PM: 48.43243" which indicates the type of subfunction (nPM) called by
+```
+KM:
+-23.737902999999278
+```
+Displays "PM: 48.43242806555327" which indicates the type of subfunction (nPM) called by
 the master function nPolyk and gives the estimate of k[2,1]*k[1,0]
 ```
-print(nPolyk([[2, 1], [1, 0]], data2, True))
+nPolyk([[2, 1], [1, 0]], data2, True)
 ```
+```
+PM:
+48.43242806555327
+```
+### nPS
 #### Description
+Given a data sample, the function returns an estimate of a product of cumulants with fixed orders.
 #### Usage
+```
+nPS(v=None, V=None)
+```
 #### Argument
+v : vector of integers
+
+V : vector of a data sample
 #### Value
-#### Warnings
+float, the estimate of the polykay
 #### Examples
+Data assignment
+```
+data = [
+    16.34, 10.76, 11.84, 13.55, 15.85, 18.20, 7.51, 10.22, 12.52, 14.68, 16.08,
+    19.43, 8.12, 11.20, 12.95, 14.77, 16.83, 19.80, 8.55, 11.58, 12.10, 15.02,
+    16.83, 16.98, 19.92, 9.47, 11.68, 13.41, 15.35, 19.11
+]
+```
+Returns an estimate of the product k[2]*k[1], where k[1] and k[2] are the mean and
+the variance of the population distribution respectively
+```
+nPS([2, 1], data)
+```
+```
+177.42329372003013
+```
+### nStirling2 
 #### Description
+The function computes the Stirling number of the second kind.
 #### Usage
+```
+nStirling2(n, k)
+```
 #### Argument
+n : integer
+
+k : integer less or equal to n
+
 #### Value
-#### Warnings
+int, the Stirling number of the second kind
 #### Examples
+Returns the number of ways to split a set of 6 objects into 2 nonempty subsets
+```
+nStirling2(6,2)
+```
+```
+31
+```
+### oBellPol
+#### Description
+The function generates a complete or a partial ordinary Bell polynomial.
+#### Usage
+```
+oBellPol(n=1, m=0)
+```
+#### Argument
+n : integer, the degree of the polynomial
 
+m : integer, the fixed degree of each monomial in the polynomial
+#### Value
+str, the expression of the polynomial
+#### Warning
+The value of the first parameter is the same as the MFB function in the univariate with univariate
+composition.
+#### Examples
+Returns the complete ordinary Bell Polynomial for n=5, that is
 
+(y1^5) + 20(y1^3)(y2) + 30(y1)(y2^2) + 60(y1^2)(y3) + 120(y2)(y3) + 120(y1)(y4) + 120(y5)
+```
+oBellPol(5)
+```
+```
+1/120*( 120(y1**5) + 480(y1**3)(y2) + 360(y1)(y2**2) + 360(y1**2)(y3) + 240(y2)(y3) + 240(y1)(y4) + 120.0(y5) )
+```
+Or (same output)
+```
+oBellPol(5,0)
+```
+```
+1/120*( 120(y1**5) + 480(y1**3)(y2) + 360(y1)(y2**2) + 360(y1**2)(y3) + 240(y2)(y3) + 240(y1)(y4) + 120.0(y5) )
+```
+Returns the partial ordinary Bell polynomial for n=5 and m=3, that is
 
+30(y1)(y2^2) + 60(y1^2)(y3)
+```
+oBellPol(5,3)
+```
+```
+1/120*( 360(y1)(y2**2) + 360(y1**2)(y3) )
+```
+### pCart
+#### Description
+The function returns the cartesian product between vectors.
+#### Usage
+```
+pCart( L )
+```
+#### Argument
+L : list of lists
+#### Value
+list, the list with the cartesian product
+#### Examples
+```
+A = [1, 2]
+B = [3, 4, 5]
+```
+Returns the cartesian product [[1,3],[1,4],[1,5],[2,3],[2,4],[2,5]]
+```
+pCart([A, B])
+```
+```
+[[1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5]]
+```
+```
+L1 = [[1, 1], [2]]
+L2 = [[5, 5], [7]]
+```
+Return the cartesian product [[1,1],[5,5]], [[1,1],[7]], [[2],[5,5]], [[2],[7]]
+and assign the result to L3
+```
+L3 = pCart([L1, L2])
+print(L3)
+```
+```
+[[[1, 1], [5, 5]], [[1, 1], [7]], [[2], [5, 5]], [[2], [7]]]
+```
+Returns the cartesian product between L3 and [7].
+
+The result is [[1,1],[5,5],[7]], [[1,1],[7],[7]], [[2],[5,5],[7]], [[2],[7],[7]]
+```
+result = pCart([L3, [7]])
+print(result)
+```
+```
+[[[1, 1], [5, 5], [7]], [[1, 1], [7], [7]], [[2], [5, 5], [7]], [[2], [7], [7]]]
+```
+### powS 
+#### Description
+The function returns the value of the power sum symmetric polynomial, with fixed degrees and in
+one or more sets of variables, when the variables are substituted with the input lists of numerical
+values.
+#### Usage
+```
+powS(vn=None, lvd=None)
+```
+#### Arguments
+vn : vector of integers (the powers of the indeterminates)
+
+lvd : list of numerical values in place of the variables
+
+#### Value
+int, the value of the polynomial
+
+#### Examples
+Returns 1^3 + 2^3 + 3^3 = 36
+```
+powS([3], [[1], [2], [3]])
+```
+```
+36
+```
+Returns (1^3 * 4^2) + (2^3 * 5^2) + (3^3 * 6^2) = 1188
+```
+powS([3, 2], [[1, 4], [2, 5], [3, 6]])
+```
+```
+1188
+```
+### pPart
+#### Description
+The function generates the partition polynomial of degree n, whose coefficients are the number of
+partitions of n into k parts for k from 1 to n
+#### Usage
+```
+pPart(n=0)
+```
+#### Argument
+n : integer, the degree of the polynomial
+#### Value
+str, the expression of the polynomial
+#### Warning
+The value of the first parameter is the same as the MFB function in the univariate with univariate case
+composition.
+
+#### Examples
+Returns the partition polynomial F[5]
+```
+pPart(5)
+```
+```
+y^5 + y^4 + 2y^3 + 2y^2 + y
+```
+### pPoly
+#### Description
+The function returns the product between polynomials without constant term.
+#### Usage
+```
+pPoly(L=None)
+```
+#### Argument
+L : lists of the coefficients of the polynomials
+#### Value
+list, the coefficients of the polynomial output of the product
+#### Examples
+[1,-3] are the coefficients of (x-3x^2), [2] is the coefficient of 2x
+
+Returns [0, 2,-6], coefficients of 2x^2-6x^3 =(x-3x^2)*(2x)
+
+```
+pPoly([ [1, -3], [2] ])
+```
+```
+[0, 2, -6]
+```
+[0,3,-2] are the coefficients of 3x^2-2x^3, [0,2,-1] are the coefficients of (2x^2-x^3)
+
+Return [0,0,0,6,-7,2], coefficients of 6x^4-7x^5+2x^6=(3x^2-2x^3)*(2x^2-x^3)
+```
+pPoly([ [0, 3, -2], [0, 2, -1] ])
+```
+```
+[0, 0, 0, 6, -7, 2]
+```
+### Set2expr
+#### Description
+The function converts a set into a string.
+#### Usage
+```
+Set2expr(v=None)
+```
+#### Argument
+v : set
+#### Value
+str, the string
+#### Examples
+To print 6f[3]^2g[2]^5 run
+```
+Set2expr( [["1","2","f","3","2"],["1","3","g","2","5"]])
+```
+```
+6.0f[3]^2g[2]^5
+```
 
 
 
