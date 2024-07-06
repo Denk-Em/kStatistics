@@ -4,7 +4,7 @@
 ### Unbiased Estimators for Cumulant Products and Faa Di Bruno's Formula
 
 ### Introduction
-This package is a Python implementation of the original R package [kStatistics](https://cran.r-project.org/web/packages/kStatistics/index.html), written by professors Di Nardo and Guardino. This file aims at presenting the kStatistics functions and how to use them through examples. Further explanations on the algorithms are available [here](https://cran.r-project.org/web/packages/kStatistics/kStatistics.pdf).
+This package is a Python implementation of the original R package [kStatistics](https://cran.r-project.org/web/packages/kStatistics/index.html), written by E. Di Nardo (elvira.dinardo@unito.it) and G. Guarino. This file aims at presenting the kStatistics functions and how to use them through examples. Further explanations on the algorithms are available [here](https://cran.r-project.org/web/packages/kStatistics/kStatistics.pdf).
 
 
 #### Contacts
