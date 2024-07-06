@@ -4,29 +4,28 @@
 ### Unbiased Estimators for Cumulant Products and Faa Di Bruno's Formula
 
 ### Introduction
-This package is a Python implementation of the original R package [kStatistics](https://cran.r-project.org/web/packages/kStatistics/index.html), written by E. Di Nardo (elvira.dinardo@unito.it) and G. Guarino. This file aims at presenting the kStatistics functions and how to use them through examples. Further explanations on the algorithms are available [here](https://cran.r-project.org/web/packages/kStatistics/kStatistics.pdf).
+This package is a Python implementation of the original R package [kStatistics](https://cran.r-project.org/web/packages/kStatistics/index.html), written by [E. Di Nardo](https://elviradinardo.it) and G. Guarino. This file aims at presenting the kStatistics functions and how to use them through examples. Further explanations on the algorithms are available [here](https://cran.r-project.org/web/packages/kStatistics/kStatistics.pdf).
 
 
 #### Contacts
+hugo.mai@ensta-paris.fr (Maintainer)
 elvira.dinardo@unito.it
 
-giuseppe.guardino@rete.basilicata.it
-
-hugo.mai@ensta-paris.fr
 ### Description
 
-kStatistics is a package producing estimates of (joint) cumulants and (joint) cumulant products
-of a given dataset, using (multivariate) k-statistics and (multivariate) polykays, which are symmetric unbiased estimators. The procedures rely on a symbolic method arising from the classical
-umbral calculus and described in the referred papers. In the package, a set of combinatorial tools
-are given useful in the construction of these estimations such as integer partitions, set partitions,
-multiset subdivisions or multi-index partitions, pairing and merging of multisets. In the package,
-there are also functions to recover univariate and multivariate cumulants from a sequence of univariate and multivariate moments (and vice-versa), using Faa di Bruno’s formula. The function
-producing Faa di Bruno’s formula returns coefficients of exponential power series compositions
-such as $f[g(z)]$ with $f$ and $g$ both univariate, or $f[g(z_1,...,z_m)]$ with $f$ univariate and $g$ multivariate, or $f[g1(z_1,...,z_m),...,gn(z_1,...,z_m)]$ with $f$ and $g$ both multivariate. Let us recall
-that Faa di Bruno’s formula might also be employed to recover iterated (partial) derivatives of all
-these compositions. Lastly, using Faa di Bruno’s formula, some special families of polynomials are
-also generated, such as Bell polynomials, generalized complete Bell polynomials, partition polynomials and generalized partition polynomials. Applications of these polynomials are described in
-the referred papers.
+kStatistics is a package producing estimates of (joint) cumulants and (joint) cumulant products of a given dataset, using (multivariate) k-statistics and (multivariate) polykays, which are symmetric unbiased estimators. The procedures rely on a symbolic method arising from the classical umbral calculus and described in the following papers.
+
+- (2008) Di Nardo E., Guarino G., Senato D. A unifying framework for k-statistics, polykays and their multivariate generalizations. Bernoulli 14, 440--468. [here](http:http://arxiv.org/pdf/math/0607623)
+
+- (2009) Di Nardo E., Guarino G., Senato D. A new method for fast computing unbiased estimators of cumulants. Statistics and Computing 19, 155--165. [here](https://arxiv.org/abs/0807.5008)
+
+- (2011) Di Nardo E., Guarino G., Senato D. A new algorithm for computing the multivariate Faa di Bruno's formula. Appl. Math. Comp. 217, 6286--6295 [here](https://arxiv.org/abs/1012.6008)
+
+In the package, a set of combinatorial tools are given useful in the construction of these estimations such as integer partitions, set partitions, multiset subdivisions or multi-index partitions, pairing and merging of multisets. In the package, there are also functions to recover univariate and multivariate cumulants from a sequence of univariate and multivariate moments (and vice-versa), using Faa di Bruno’s formula. Their evaluation is also provided when users specify in input numerical values for moments and/or cumulants. The function producing Faa di Bruno’s formula returns coefficients of exponential power series compositions such as $f[g(z)]$ with $f$ and $g$ both univariate, or $f[g(z_1,...,z_m)]$ with $f$ univariate and $g$ multivariate, or $f[g1(z_1,...,z_m),...,gn(z_1,...,z_m)]$ with $f$ and $g$ both multivariate. Let us recall that Faa di Bruno’s formula might also be employed to recover iterated (partial) derivatives of all these compositions. Lastly, using Faa di Bruno’s formula, some special families of polynomials are also generated, such as Bell polynomials, generalized complete Bell polynomials, partition polynomials and generalized partition polynomials.
+
+For further applications of these functions, refer to the following paper:
+
+- (2022) Di Nardo E., Guarino G.  kStatistics: Unbiased Estimates of Joint Cumulant Products from the Multivariate Faà Di Bruno’s Formula. [The R Journal](https://journal.r-project.org/articles/RJ-2022-033/RJ-2022-033.pdf) 14(2) 208-228.
 
 ### Presentation of the functions and their use
 
