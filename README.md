@@ -1836,6 +1836,7 @@ Finally, if one tries to evaluate cum2mom with values of k, the function produce
 ```
 evaluate('k[1] = 2, k[2] = 4, k[3] = 6, k[4] = 8', cum2mom(5))
 ```
+```
 ValueError: Trying to evaluate cum2mom with values of cumulants
 ```
 Or the other way round
