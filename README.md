@@ -21,7 +21,7 @@ kStatistics is a package producing estimates of (joint) cumulants and (joint) cu
 
 - (2011) Di Nardo E., Guarino G., Senato D. A new algorithm for computing the multivariate Faa di Bruno's formula. Appl. Math. Comp. 217, 6286--6295 [here](https://arxiv.org/abs/1012.6008)
 
-In the package, a set of combinatorial tools are given useful in the construction of these estimations such as integer partitions, set partitions, multiset subdivisions or multi-index partitions, pairing and merging of multisets. In the package, there are also functions to recover univariate and multivariate cumulants from a sequence of univariate and multivariate moments (and vice-versa), using Faa di Bruno’s formula. Their evaluation is also provided when users specify in input numerical values for moments and/or cumulants. The function producing Faa di Bruno’s formula returns coefficients of exponential power series compositions such as $f[g(z)]$ with $f$ and $g$ both univariate, or $f[g(z_1,...,z_m)]$ with $f$ univariate and $g$ multivariate, or $f[g1(z_1,...,z_m),...,gn(z_1,...,z_m)]$ with $f$ and $g$ both multivariate. Let us recall that Faa di Bruno’s formula might also be employed to recover iterated (partial) derivatives of all these compositions. Lastly, using Faa di Bruno’s formula, some special families of polynomials are also generated, such as Bell polynomials, generalized complete Bell polynomials, partition polynomials and generalized partition polynomials.
+In the package, a set of combinatorial tools are given useful in the construction of these estimations such as integer partitions, set partitions, multiset subdivisions or multi-index partitions, pairing and merging of multisets. In the package, there are also functions to recover univariate and multivariate cumulants from a sequence of univariate and multivariate moments (and vice-versa), using Faa di Bruno’s formula. Their evaluation is also provided when users specify in input numerical values for moments and/or cumulants. The function producing Faa di Bruno’s formula returns coefficients of exponential power series compositions such as $f[g(z)]$ with $f$ and $g$ both univariate, or $f[g(z_1,...,z_m)]$ with $f$ univariate and $g$ multivariate, or $f[g_1(z_1,...,z_m),...,g_n(z_1,...,z_m)]$ with $f$ and $g$ both multivariate. Let us recall that Faa di Bruno’s formula might also be employed to recover iterated (partial) derivatives of all these compositions. Lastly, using Faa di Bruno’s formula, some special families of polynomials are also generated, such as Bell polynomials, generalized complete Bell polynomials, partition polynomials and generalized partition polynomials.
 
 For further applications of these functions, refer to the following paper:
 
@@ -1750,8 +1750,85 @@ Set2expr( [["1","2","f","3","2"],["1","3","g","2","5"]])
 ```
 6.0f[3]^2g[2]^5
 ```
+### Evaluate
+#### Description
+Calculates the value of a given cumulant or moment.
+#### Usage
+```
+evaluate(s=None, S=None)
+```
+#### Argument
+s : a string containing the values of the moments or cumulants
 
+S : the string to evaluate
+#### Value
+float, the numerical value of the cumulant/moment
+#### Examples
 
+Run 
+```
+cum2mom(5)
+```
+to get the cumulant 5, that is
+```
+24m[1]^5 - 60m[1]^3m[2] + 30m[1]m[2]^2 + 20m[1]^2m[3] - 10m[2]m[3] - 5m[1]m[4] + m[5]
+```
+Assume the user wants to calculate its value knowing the moments up to order 5, let us say that
 
+m[1]=1, m[2]=2, m[3]=3, m[4]=4, m[5]=5.
 
-
+Then run 
+```
+evaluate('m[1]=1, m[2]=2, m[3]=3, m[4]=4, m[5]=5', '24m[1]^5 - 60m[1]^3m[2] + 30m[1]m[2]^2 + 20m[1]^2m[3] - 10m[2]m[3] - 5m[1]m[4] + m[5]')
+```
+To get the numerical value of cum2mom(5) givent the values of the moments m[1],..., m[5], that is
+```
+9.0
+```
+Or (same output)
+```
+evaluate('m[1]=1, m[2]=2, m[3]=3, m[4]=4, m[5]=5', cum2mom(5))
+```
+```
+9.0
+```
+When a value is missing, an error occurs :
+```
+print(evaluate('m[1]=1, m[2]=2, m[3]=3, m[5]=5', cum2mom(5)))
+```
+```
+ValueError: Undefined variables in expression: ['m[4]']
+```
+The function is also usable for mom2cum, for example run
+```
+mom2cum(4)
+```
+to get
+```
+k[1]^4 + 6k[1]^2k[2] + 3k[2]^2 + 4k[1]k[3] + k[4]
+```
+To evaluate this expression knowing 
+```
+k[1] = 2, k[2] = 4, k[3] = 6, k[4] = 8
+```
+run
+```
+evaluate('k[1] = 2, k[2] = 4, k[3] = 6, k[4] = 8', 'k[1]^4 + 6k[1]^2k[2] + 3k[2]^2 + 4k[1]k[3] + k[4]')
+```
+```
+216.0
+```
+Or (same output)
+```
+evaluate('k[1] = 2, k[2] = 4, k[3] = 6, k[4] = 8', mom2cum(4))
+```
+```
+216.0
+```
+And if a value is missing
+```
+evaluate('k[1] = 2, k[2] = 6, k[4] = 8', 'k[1]^4 + 6k[1]^2k[2] + 3k[2]^2 + 4k[1]k[3] + k[4]')
+```
+```
+ValueError: Undefined variables in expression: ['k[3]']
+```
