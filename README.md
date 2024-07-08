@@ -1781,7 +1781,7 @@ Then run
 ```
 evaluate('m[1]=1, m[2]=2, m[3]=3, m[4]=4, m[5]=5', '24m[1]^5 - 60m[1]^3m[2] + 30m[1]m[2]^2 + 20m[1]^2m[3] - 10m[2]m[3] - 5m[1]m[4] + m[5]')
 ```
-To get the numerical value of cum2mom(5) givent the values of the moments m[1],..., m[5], that is
+To get the numerical value of cum2mom(5) given the values of the moments m[1],..., m[5], that is
 ```
 9.0
 ```
@@ -1831,4 +1831,17 @@ evaluate('k[1] = 2, k[2] = 6, k[4] = 8', 'k[1]^4 + 6k[1]^2k[2] + 3k[2]^2 + 4k[1]
 ```
 ```
 ValueError: Undefined variables in expression: ['k[3]']
+```
+Finally, if one tries to evaluate cum2mom with values of k, the function produces an error.
+```
+evaluate('k[1] = 2, k[2] = 4, k[3] = 6, k[4] = 8', cum2mom(5))
+```
+ValueError: Trying to evaluate cum2mom with values of cumulants
+```
+Or the other way round
+```
+evaluate('m[1]=1, m[2]=2, m[3]=4, m[4]=3', mom2cum(4))
+```
+```
+ValueError: Trying to evaluate mom2cum with values of moments
 ```
