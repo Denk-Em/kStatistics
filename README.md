@@ -1769,11 +1769,11 @@ Run
 ```
 cum2mom(5)
 ```
-to get the cumulant 5, that is
+to get the cumulant of order 5, that is
 ```
 24m[1]^5 - 60m[1]^3m[2] + 30m[1]m[2]^2 + 20m[1]^2m[3] - 10m[2]m[3] - 5m[1]m[4] + m[5]
 ```
-To calculate the value of the above cumulant given the moments up to order 5 
+Then, to calculate the value of the above cumulant given the moments up to order 5 
 
 m[1]=1, m[2]=2, m[3]=3, m[4]=4, m[5]=5.
 
@@ -1792,7 +1792,7 @@ evaluate('m[1]=1, m[2]=2, m[3]=3, m[4]=4, m[5]=5', cum2mom(5))
 ```
 9.0
 ```
-When a value is missing, an error occurs :
+When a value is missing, an error occurs:
 ```
 print(evaluate('m[1]=1, m[2]=2, m[3]=3, m[5]=5', cum2mom(5)))
 ```
@@ -1825,21 +1825,21 @@ evaluate('k[1] = 2, k[2] = 4, k[3] = 6, k[4] = 8', mom2cum(4))
 ```
 216.0
 ```
-And if a value is missing
+and if a value is missing
 ```
 evaluate('k[1] = 2, k[2] = 6, k[4] = 8', 'k[1]^4 + 6k[1]^2k[2] + 3k[2]^2 + 4k[1]k[3] + k[4]')
 ```
 ```
 ValueError: Undefined variables in expression: ['k[3]']
 ```
-Finally, if one tries to evaluate cum2mom giving in input cumulant values instead of moment values, the function produces an error.
+Finally, if one tries to evaluate cum2mom giving in input cumulant values instead of moment values, the function produces the following error:
 ```
 evaluate('k[1] = 2, k[2] = 4, k[3] = 6, k[4] = 8', cum2mom(5))
 ```
 ```
 ValueError: Trying to evaluate cum2mom with values of cumulants
 ```
-Or the other way round
+or the other way round
 ```
 evaluate('m[1]=1, m[2]=2, m[3]=4, m[4]=3', mom2cum(4))
 ```
