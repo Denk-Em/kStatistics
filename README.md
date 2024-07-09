@@ -1752,7 +1752,7 @@ Set2expr( [["1","2","f","3","2"],["1","3","g","2","5"]])
 ```
 ### Evaluate
 #### Description
-Calculates the value of a given cumulant or moment.
+Calculate the value of a given cumulant (from known moments) or moment (from known cumulants).
 #### Usage
 ```
 evaluate(s=None, S=None)
@@ -1773,19 +1773,19 @@ to get the cumulant 5, that is
 ```
 24m[1]^5 - 60m[1]^3m[2] + 30m[1]m[2]^2 + 20m[1]^2m[3] - 10m[2]m[3] - 5m[1]m[4] + m[5]
 ```
-Assume the user wants to calculate its value knowing the moments up to order 5, let us say that
+To calculate the value of the above cumulant given the moments up to order 5 
 
 m[1]=1, m[2]=2, m[3]=3, m[4]=4, m[5]=5.
 
-Then run 
+run 
 ```
 evaluate('m[1]=1, m[2]=2, m[3]=3, m[4]=4, m[5]=5', '24m[1]^5 - 60m[1]^3m[2] + 30m[1]m[2]^2 + 20m[1]^2m[3] - 10m[2]m[3] - 5m[1]m[4] + m[5]')
 ```
-To get the numerical value of cum2mom(5) given the values of the moments m[1],..., m[5], that is
+The output is
 ```
 9.0
 ```
-Or (same output)
+To get the same output, run
 ```
 evaluate('m[1]=1, m[2]=2, m[3]=3, m[4]=4, m[5]=5', cum2mom(5))
 ```
@@ -1799,7 +1799,7 @@ print(evaluate('m[1]=1, m[2]=2, m[3]=3, m[5]=5', cum2mom(5)))
 ```
 ValueError: Undefined variables in expression: ['m[4]']
 ```
-The function is also usable for mom2cum, for example run
+The function is also usable for mom2cum. For example run
 ```
 mom2cum(4)
 ```
@@ -1807,7 +1807,7 @@ to get
 ```
 k[1]^4 + 6k[1]^2k[2] + 3k[2]^2 + 4k[1]k[3] + k[4]
 ```
-To evaluate this expression knowing 
+To evaluate the above expression with 
 ```
 k[1] = 2, k[2] = 4, k[3] = 6, k[4] = 8
 ```
@@ -1832,7 +1832,7 @@ evaluate('k[1] = 2, k[2] = 6, k[4] = 8', 'k[1]^4 + 6k[1]^2k[2] + 3k[2]^2 + 4k[1]
 ```
 ValueError: Undefined variables in expression: ['k[3]']
 ```
-Finally, if one tries to evaluate cum2mom with values of k, the function produces an error.
+Finally, if one tries to evaluate cum2mom giving in input cumulant values instead of moment values, the function produces an error.
 ```
 evaluate('k[1] = 2, k[2] = 4, k[3] = 6, k[4] = 8', cum2mom(5))
 ```
